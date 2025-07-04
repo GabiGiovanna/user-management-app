@@ -3,7 +3,7 @@
 Aplicação Web completa para cadastro, visualização, edição e exclusão de usuários, utilizando:
 
 - ⚙️ **Node.js** + **Express.js** (Backend)
-- 🍃 **MongoDB** (Banco de dados)
+- 🍃 **MongoDB** + **Prisma ORM** (Banco de dados)
 - ⚛️ **React** + **Tailwind CSS** (Frontend)
 
 ---

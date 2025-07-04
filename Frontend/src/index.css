@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;}
+
+
+body {
+background: #62196e;
+background: radial-gradient(circle, rgba(98, 25, 110, 1) 0%, rgba(128, 36, 54, 1) 100%);
+
+}

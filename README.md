@@ -20,6 +20,7 @@ Aplicação Web completa para cadastro, visualização, edição e exclusão de 
 ## 🧩 Tecnologias
 
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB + Mongoose
@@ -27,12 +28,13 @@ Aplicação Web completa para cadastro, visualização, edição e exclusão de 
 - dotenv
 
 ### Frontend
+
 - React.js
 - Tailwind CSS
 - Axios
 - React Router DOM
+- EsLint
 
 ---
 
 ## 📁 Estrutura de Pastas
-

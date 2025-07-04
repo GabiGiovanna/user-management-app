@@ -1,7 +1,7 @@
 {
   "name": "user-management-app",
   "version": "1.0.0",
-"type": "module",
+  "type": "module",
   "description": "CRUD de usuários com Node.js, MongoDB, Express, React e Tailwind",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/GabiGiovanna/user-management-app#readme",
   "dependencies": {
+    "@prisma/client": "^6.11.1",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.11.1"
   }
 }

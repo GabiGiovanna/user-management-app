@@ -5,7 +5,8 @@
   "description": "CRUD de usuários com Node.js, MongoDB, Express, React e Tailwind",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/GabiGiovanna/user-management-app#readme",
   "dependencies": {
     "@prisma/client": "^6.11.1",
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   },
   "devDependencies": {

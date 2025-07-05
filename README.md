@@ -24,6 +24,7 @@ Aplicação Web completa para cadastro, visualização, edição e exclusão de 
 - Node.js
 - Express.js
 - MongoDB + Mongoose
+- Prisma ORM
 - CORS
 - dotenv
 

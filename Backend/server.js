@@ -1,6 +1,6 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
-import cors from "cors"
+import cors from "cors";
 
 const prisma = new PrismaClient();
 
@@ -8,7 +8,7 @@ const app = express(); //Passando o express como função
 
 app.use(express.json()); // Middleware para analisar o corpo das requisições como JSON
 
-app.use(cors())
+app.use(cors());
 
 // Rota de POST(Cadastro) para /usuarios (Requisição e resposta)
 app.post("/usuarios", async (req, res) => {
@@ -69,6 +69,6 @@ app.delete("/usuarios/:id", async (req, res) => {
   res.status(204).json({ message: "User Deletado com sucesso" }); // Retorna status 204 (e envia essa mensagem) após a exclusão
 });
 
-app.listen(3000); // Inicia o servidor na porta 3333
+app.listen(3333); // Inicia o servidor na porta 3333
 
 //User : gabriela - PX6QrRzF1pYWYSCZ

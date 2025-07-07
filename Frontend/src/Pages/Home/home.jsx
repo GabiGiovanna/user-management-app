@@ -1,46 +1,70 @@
 //frontend/src/Pages/Home/home.jsx
 
 import { Pencil, Trash2 } from "lucide-react";
-import api from "../../services/api"
+import api from "../../services/api";
 import { useEffect, useState, useRef } from "react"; //Sempre executa assim que abrir(useEffects)
-
-
+import { toast } from "react-toastify"; //Para notificação
 
 export default function Home() {
-
-  const inputName = useRef() //Para guardar o valor dos inputs
-  const inputEmail = useRef()
-  const inputImage = useRef()
-  const inputAge = useRef()
-  const [users, setUsers] = useState([]) //A variavel(users) é atualizada - coloca os dados(setUsers)na variavel(Users)
+  const inputName = useRef(); //Para guardar o valor dos inputs
+  const inputEmail = useRef();
+  const inputImage = useRef();
+  const inputAge = useRef();
+  const [users, setUsers] = useState([]); //A variavel(users) é atualizada - coloca os dados(setUsers)na variavel(Users)
 
   async function getUsers() {
-
-    const usersFromApi = await api.get('/usuarios')
-    setUsers(usersFromApi.data)
-
+    const usersFromApi = await api.get("/usuarios");
+    setUsers(usersFromApi.data);
   }
 
   useEffect(() => {
     getUsers();
-
   }, []);
 
   async function postUsers() {
-
-    await api.post('/usuarios', {
+    await api.post("/usuarios", {
       name: inputName.current.value,
       age: inputAge.current.value,
       email: inputEmail.current.value,
-      image: inputImage.current.value
+      image: inputImage.current.value,
+    });
+    toast.success("Usuário cadastrado com sucesso!");
+    inputName.current.value = "";
+    inputEmail.current.value = "";
+    inputAge.current.value = "";
+    inputImage.current.value = "";
+    //Notificação de sucesso
+    //Recarrega a lista de usuários após o cadastro
+    getUsers();
+  }
 
-    })
-    getUsers()
+  async function deleteUsers(id) {
+    await api.delete(`/usuarios/${id}`);
+    toast.success("Usuário Deletado!");
+    getUsers();
+  }
+
+  async function editUsers(id) {
+    await api.put(`/usuarios/${id}`, {
+      name: inputName.current.value,
+      age: inputAge.current.value,
+      email: inputEmail.current.value,
+      image: inputImage.current.value,
+    });
+    toast.success("Usuário editado com sucesso!");
+    inputName.current.value = "";
+    inputEmail.current.value = "";
+    inputAge.current.value = "";
+    inputImage.current.value = "";
+    //Recarrega a lista de usuários após a edição
+    getUsers();
   }
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-gradient-to-br from-red-800 via-purple-800 to-fuchsia-800 px-4 py-10">
-      <h1 className="mb-6 text-center text-3xl font-bold text-white font-ubuntu">Gabi Gio</h1>
+      <h1 className="mb-6 text-center text-3xl font-bold text-white font-ubuntu">
+        Gabi Gio
+      </h1>
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl">
         <h2 className="mb-6 text-center text-3xl font-bold text-purple-800 font-ubuntu">
           CRUD de Usuário
@@ -142,7 +166,6 @@ export default function Home() {
                   alt="Imagem"
                   className="h-full w-full object-cover object-top"
                 />
-
               </div>
 
               <div className="space-y-1 text-sm">
@@ -167,7 +190,7 @@ export default function Home() {
                 <button
                   title="Deletar"
                   className="hover:text-red-400 transition"
-                  onClick={() => console.log("Deletar", user.id)}
+                  onClick={() => deleteUsers(user.id)}
                 >
                   <Trash2 size={18} />
                 </button>

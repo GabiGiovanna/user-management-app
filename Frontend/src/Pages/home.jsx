@@ -1,14 +1,14 @@
 //frontend/src/Pages/Home/home.jsx
 
-import { Pencil, Trash2 } from "lucide-react";
-import api from "../../services/api";
-import { useEffect, useState, useRef } from "react"; //Sempre executa assim que abrir(useEffects)
-import { toast } from "react-toastify"; //Para notificação
+import { Pencil, Trash2 } from 'lucide-react';
+import api from '../services/api';
+import { useEffect, useState, useRef } from 'react'; //Sempre executa assim que abrir(useEffects)
+import { toast } from 'react-toastify'; //Para notificação
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
-  const [isEditing, setEditing] = useState(false) // Controla se estamos no modo de edição ou cadastro
-  const [editingUserId, setEditingUserId] = useState(null) // Guarda o ID do usuário que está sendo editado
+  const [isEditing, setEditing] = useState(false); // Controla se estamos no modo de edição ou cadastro
+  const [editingUserId, setEditingUserId] = useState(null); // Guarda o ID do usuário que está sendo editado
   const inputName = useRef(); //Para guardar o valor dos inputs
   const inputEmail = useRef();
   const inputImage = useRef();
@@ -16,7 +16,7 @@ export default function Home() {
   const [users, setUsers] = useState([]); //A variavel(users) é atualizada - coloca os dados(setUsers)na variavel(Users)
 
   async function getUsers() {
-    const usersFromApi = await api.get("/usuarios");
+    const usersFromApi = await api.get('/usuarios');
     setUsers(usersFromApi.data);
   }
 
@@ -25,17 +25,17 @@ export default function Home() {
   }, []);
 
   async function postUsers() {
-    await api.post("/usuarios", {
+    await api.post('/usuarios', {
       name: inputName.current.value,
       age: inputAge.current.value,
       email: inputEmail.current.value,
       image: inputImage.current.value,
     });
-    toast.success("Usuário cadastrado com sucesso!");
-    inputName.current.value = "";
-    inputEmail.current.value = "";
-    inputAge.current.value = "";
-    inputImage.current.value = "";
+    toast.success('Usuário cadastrado com sucesso!');
+    inputName.current.value = '';
+    inputEmail.current.value = '';
+    inputAge.current.value = '';
+    inputImage.current.value = '';
     //Notificação de sucesso
     //Recarrega a lista de usuários após o cadastro
     getUsers();
@@ -43,7 +43,7 @@ export default function Home() {
 
   async function deleteUsers(id) {
     await api.delete(`/usuarios/${id}`);
-    toast.success("Usuário Deletado!");
+    toast.success('Usuário Deletado!');
     getUsers();
   }
 
@@ -54,24 +54,22 @@ export default function Home() {
       email: inputEmail.current.value,
       image: inputImage.current.value,
     });
-    toast.success("Usuário editado com sucesso!");
-    inputName.current.value = "";
-    inputEmail.current.value = "";
-    inputAge.current.value = "";
-    inputImage.current.value = "";
+    toast.success('Usuário editado com sucesso!');
+    inputName.current.value = '';
+    inputEmail.current.value = '';
+    inputAge.current.value = '';
+    inputImage.current.value = '';
     //Recarrega a lista de usuários após a edição
     getUsers();
   }
 
   function handleEdit(user) {
-
-    inputName.current.value = user.name
-    inputEmail.current.value = user.email
-    inputAge.current.value = user.age
-    inputImage.current.value = user.image
-    setEditing(true)
-    setEditingUserId(user.id)
-
+    inputName.current.value = user.name;
+    inputEmail.current.value = user.email;
+    inputAge.current.value = user.age;
+    inputImage.current.value = user.image;
+    setEditing(true);
+    setEditingUserId(user.id);
   }
 
   return (
@@ -156,48 +154,46 @@ export default function Home() {
             />
           </div>
 
-{/* BOTÕES */}
-<div className="flex flex-col gap-2 sm:flex-row">
-  <button
-    onClick={() => {
-      if (isEditing) {
-        editUsers(editingUserId);
-        setEditing(false);
-        setEditingUserId(null);
-      } else {
-        postUsers();
-      }
-    }}
-    type="button"
-    className={`flex-1 rounded-md border ${
-      isEditing
-        ? "border-yellow-500 text-yellow-700 hover:bg-yellow-600 hover:text-white"
-        : "border-purple-700 text-purple-700 hover:bg-purple-800 hover:text-white"
-    } px-4 py-2 text-sm font-medium transition duration-300 shadow-md`}
-  >
-    {isEditing ? "Editar" : "Cadastrar"}
-  </button>
+          {/* BOTÕES */}
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <button
+              onClick={() => {
+                if (isEditing) {
+                  editUsers(editingUserId);
+                  setEditing(false);
+                  setEditingUserId(null);
+                } else {
+                  postUsers();
+                }
+              }}
+              type="button"
+              className={`flex-1 rounded-md border ${
+                isEditing
+                  ? 'border-yellow-500 text-yellow-700 hover:bg-yellow-600 hover:text-white'
+                  : 'border-purple-700 text-purple-700 hover:bg-purple-800 hover:text-white'
+              } px-4 py-2 text-sm font-medium transition duration-300 shadow-md`}
+            >
+              {isEditing ? 'Editar' : 'Cadastrar'}
+            </button>
 
-  {isEditing && (
-    <button
-      onClick={() => {
-        setEditing(false);
-        setEditingUserId(null);
-        inputName.current.value = "";
-        inputEmail.current.value = "";
-        inputAge.current.value = "";
-        inputImage.current.value = "";
-        toast.info("Edição cancelada");
-      }}
-      type="button"
-      className="flex-1 rounded-md border border-gray-400 text-gray-700 hover:bg-gray-300 px-4 py-2 text-sm font-medium transition duration-300 shadow-md"
-    >
-      Cancelar
-    </button>
-  )}
-</div>
-
-
+            {isEditing && (
+              <button
+                onClick={() => {
+                  setEditing(false);
+                  setEditingUserId(null);
+                  inputName.current.value = '';
+                  inputEmail.current.value = '';
+                  inputAge.current.value = '';
+                  inputImage.current.value = '';
+                  toast.info('Edição cancelada');
+                }}
+                type="button"
+                className="flex-1 rounded-md border border-gray-400 text-gray-700 hover:bg-gray-300 px-4 py-2 text-sm font-medium transition duration-300 shadow-md"
+              >
+                Cancelar
+              </button>
+            )}
+          </div>
         </form>
         {/* LISTA DE USUÁRIOS */}
         <div className="mt-8 space-y-4">

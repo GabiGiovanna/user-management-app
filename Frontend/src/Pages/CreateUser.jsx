@@ -110,7 +110,7 @@ export default function CreateUser() {
           <button
             onClick={postUsers}
             type="button"
-            className=" border border-[#9932cc] rounded-md w-full p-2 hover:bg-[#9932cc] hover:text-white"
+            className=" border border-[#9932cc] rounded-md transition duration-300 shadow-md w-full p-2 hover:bg-[#9932cc] hover:text-white"
           >
             Cadastrar
           </button>
